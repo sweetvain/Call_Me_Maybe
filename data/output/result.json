@@ -1,0 +1,72 @@
+[
+  {
+    "prompt": "What is the square root of 16?",
+    "name": "error",
+    "parameters": {}
+  },
+  {
+    "prompt": "Reverse the string 'hello'",
+    "name": "error",
+    "parameters": {}
+  },
+  {
+    "prompt": "Reverse the string 'world'",
+    "name": "error",
+    "parameters": {}
+  },
+  {
+    "prompt": "Substitute the digits in the string 'Hello 34 I'm 233 years old' with 'NUMBERS'",
+    "name": "error",
+    "parameters": {}
+  },
+  {
+    "prompt": "Replace all vowels in 'Programming is fun' with asterisks",
+    "name": "error",
+    "parameters": {}
+  },
+  {
+    "prompt": "Substitute the word 'cat' with 'dog' in 'The cat sat on the mat with another cat'",
+    "name": "error",
+    "parameters": {}
+  },
+  {
+    "prompt": "What is the sum of 2 and 3?",
+    "name": "error",
+    "parameters": {}
+  },
+  {
+    "prompt": "What is the sum of 265 and 345?",
+    "name": "error",
+    "parameters": {}
+  },
+  {
+    "prompt": "Is 4 an even number?",
+    "name": "error",
+    "parameters": {}
+  },
+  {
+    "prompt": "Is 7 an even number?",
+    "name": "error",
+    "parameters": {}
+  },
+  {
+    "prompt": "What is the product of 3 and 5?",
+    "name": "error",
+    "parameters": {}
+  },
+  {
+    "prompt": "What is the product of 12 and 4?",
+    "name": "error",
+    "parameters": {}
+  },
+  {
+    "prompt": "Greet shrek",
+    "name": "error",
+    "parameters": {}
+  },
+  {
+    "prompt": "Greet john",
+    "name": "error",
+    "parameters": {}
+  }
+]

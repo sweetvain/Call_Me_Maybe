@@ -1,0 +1,22 @@
+PYTHON = uv run python
+SRC = src
+
+install:
+	uv sync
+
+run:
+	$(PYTHON) -m $(SRC)
+
+debug:
+	$(PYTHON) -m pdb -m $(SRC)
+
+clean:
+	rm -rf __pycache__ .mypy_cache .pytest_cache
+
+lint:
+	flake8 . [cite: 126]
+	mypy --warn-return-any --warn-unused-ignores --ignore-missing-imports --disallow-untyped-defs --check-untyped-defs .
+
+lint-strict:
+	flake8 .
+	mypy --strict .

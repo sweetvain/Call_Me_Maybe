@@ -5,7 +5,7 @@ install:
 	uv sync
 
 run:
-	$(PYTHON) -m $(SRC) --functions_definition data/input/functions_definition.json --input data/input/function_calling_tests.json --output output/result.json
+	$(PYTHON) -m $(SRC) --functions_definition data/input/functions_definition.json --input data/input/function_calling_tests.json --output data/output/result.json
 
 debug:
 	$(PYTHON) -m pdb -m $(SRC)

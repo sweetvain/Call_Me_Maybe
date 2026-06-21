@@ -1,0 +1,26 @@
+[
+  {
+    "prompt": "Can you calculate the sum of -0.00001 and -9999.9?"
+  },
+  {
+    "prompt": "In the sentence \"The 'matrix' is everywhere\", please swap the pattern \"[aeiou]\" with \"_\""
+  },
+  {
+    "prompt": "Substitute all numbers with 'DIGIT' inside this quote: \"Error 500: Connection timed out after 30 seconds.\""
+  },
+  {
+    "prompt": "Inspect the asset payload using the identifier code 000042"
+  },
+  {
+    "prompt": "Please change the global state to FALSE, or actually, let's keep it as TRUE... wait, no, set it to FALSE."
+  },
+  {
+    "prompt": "What happens if we add 10 and 20 and 30 together?"
+  },
+  {
+    "prompt": "Substitute '' (empty string) with 'space' in 'hello'"
+  },
+  {
+    "prompt": "Just greet the user named 'O'Connor'"
+  }
+]

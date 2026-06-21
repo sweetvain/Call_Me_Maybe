@@ -10,6 +10,7 @@ ArgType = Literal["int", "float", "str", "bool"]
 class FunctionDefinition(BaseModel):
     """Représente la définition d'une fonction injectable."""
     fn_name: str
+    description: str = "No description provided"  # <-- Ajouté ici, simple et propre
     args_names: List[str]
     args_types: Dict[str, ArgType]
     return_type: ArgType | Literal["void"] | str

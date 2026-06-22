@@ -1,9 +1,11 @@
 from typing import Any
 
+
 class TokenFilter:
     @staticmethod
     def clean_token(token_text: str) -> str:
         return token_text.replace("Ġ", " ").replace(" ", " ").strip()
+
 
 def cast_value(value: str, target_type: str) -> Any:
     clean_val = value.strip().strip('"').strip("'")

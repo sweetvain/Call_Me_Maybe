@@ -14,9 +14,9 @@ clean:
 	rm -rf __pycache__ .mypy_cache .pytest_cache llm_sdk/__pycache__ src/__pycache__
 
 lint:
-	flake8 . --exclude=llm_sdk
-	mypy --warn-return-any --warn-unused-ignores --ignore-missing-imports --disallow-untyped-defs --check-untyped-defs --follow-imports=silent src/
+	flake8 .
+	mypy  . --warn-return-any --warn-unused-ignores --ignore-missing-imports --disallow-untyped-defs --check-untyped-defs
 
 lint-strict:
-	flake8 . --exclude=llm_sdk
-	mypy --strict --follow-imports=silent src/
+	flake8 .
+	mypy . --strict

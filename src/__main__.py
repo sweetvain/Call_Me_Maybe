@@ -12,8 +12,7 @@ from src.models import FunctionCallResult
 
 
 class ConstrainedPipelineDecoder:
-    def __init__(self, model: Small_LLM_Model) -> None:
-        """Initializes the decoder with a given LLM model and vocabulary."""
+    def __init__(self, model: Small_LLM_Model):
         self.model = model
 
         # Public API check - No private attributes or methods used
@@ -153,7 +152,7 @@ def main() -> None:
     results = []
 
     for idx, test_case in enumerate(test_cases, 1):
-        # SKIP EMPTY PROMPT (No LLM call, direct passthrough)
+        """ SKIP EMPTY PROMPT (No LLM call, direct passthrough)"""
         if not test_case.prompt or not test_case.prompt.strip():
             results.append({
                 "prompt": test_case.prompt,
@@ -162,9 +161,8 @@ def main() -> None:
             })
             continue
 
-        # PURE LLM ROUTING STEP - Contextual descriptive injection
-        # We only pass real functions to the decoder to avoid
-        # an aggressive bias toward "none"
+        """ PURE LLM ROUTING STEP - Contextual descriptive injection """
+        # On ne passe que les vraies fonctions au décodeur pour éviter le biais agressif du "none"
         func_names = [f.fn_name for f in functions_def]
         desc_list = [
             f"{f.fn_name} ({f.description})" for f in functions_def
@@ -191,10 +189,9 @@ def main() -> None:
         chosen_fn_name = decoder.decode_one_of_candidates(
             input_ids, func_names
         )
-
-        # --- DYNAMIC BLIND SPOT VALIDATION (Anti-Hallucination) ---
-        # We extract keywords from the chosen function to ensure
-        # a minimum semantic match
+        
+        # --- VALIDATION DYNAMIQUE ANGLE MORTS (Anti-Hallucination) ---
+        # On extrait les mots-clés de la fonction choisie pour s'assurer d'un minimum de correspondance sémantique
         fn_def = next(
             (f for f in functions_def if f.fn_name == chosen_fn_name),
             None
@@ -202,29 +199,19 @@ def main() -> None:
 
         is_valid_route = False
         if fn_def:
-            # We split the tokens from the description and
-            # the function name
+            # On découpe les tokens de description et du nom de fonction
             semantic_keywords = {
-                w.lower() for w in re.split(r"[_\s]+", fn_def.fn_name)
-                if len(w) > 2
+                w.lower() for w in re.split(r"[_\s]+", fn_def.fn_name) if len(w) > 2
             } | {
-                w.strip(",.!?\"'").lower()
-                for w in fn_def.description.split()
-                if len(w) > 3
+                w.strip(",.!?\"'").lower() for w in fn_def.description.split() if len(w) > 3
             }
-            # We check if at least one semantic keyword of the
-            # function matches the intent of the prompt
-            prompt_words = {
-                w.lower().strip(",.!?\"'")
-                for w in test_case.prompt.split()
-            }
+            # On vérifie si au moins un mot-clé sémantique de la fonction match avec l'intention du prompt
+            prompt_words = {w.lower().strip(",.!?\"'") for w in test_case.prompt.split()}
             if any(kw in prompt_words for kw in semantic_keywords):
                 is_valid_route = True
 
-        # If the model forces an off-context function
-        # (e.g. 'who is ely' -> fn_substitute_string_with_regex)
-        # the lack of semantic overlap will cleanly fall back
-        # to "none".
+        # Si le modèle force une fonction hors contexte (ex: 'who is ely' -> fn_substitute_string_with_regex)
+        # le manque de recoupement sémantique le fera rebasculer proprement sur "none".
         if not is_valid_route or not fn_def:
             results.append({
                 "prompt": test_case.prompt,
@@ -233,8 +220,7 @@ def main() -> None:
             })
             continue
 
-        # Terminal output is shown ONLY if the test case is
-        # functionally valid
+        """ Terminal output is shown ONLY if the test case is functionally valid """
         print(f"\n[{idx}/{len(test_cases)}] Prompt: '{test_case.prompt}'")
         print(f" -> Chosen Function (via LLM Logits): {chosen_fn_name}")
 
